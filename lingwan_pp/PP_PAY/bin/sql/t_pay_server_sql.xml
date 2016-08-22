@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<commands>
+
+  <command >
+    <desription>
+      SQL文的用途的描述
+    </desription>
+    <sqlname>findAllPayServer</sqlname>
+    <sql><![CDATA[
+		select * from t_pay_server
+    ]]>
+    </sql>
+  </command>
+
+
+ <command >
+    <desription>
+      SQL文的用途的描述
+    </desription>
+    <sqlname>findPayServerByName</sqlname>
+    <sql><![CDATA[
+		select * from t_pay_server where s_name=#s_name#
+    ]]>
+    </sql>
+  </command>
+  
+   <command >
+    <desription>
+      SQL文的用途的描述
+    </desription>
+    <sqlname>findPayServerById</sqlname>
+    <sql><![CDATA[
+		select * from t_pay_server where s_id=#s_id#
+    ]]>
+    </sql>
+  </command>
+  
+  
+  
+  <command >
+    <desription>
+      SQL文的用途的描述
+    </desription>
+    <sqlname>findPayServerByDetailUrl</sqlname>
+    <sql><![CDATA[
+		select s_call_payment_url from t_pay_server_detail where s_id=#s_id# and serverCode=#serverCode# and (isSandbox='' or isSandbox=#isSandbox#) order by isSandbox desc
+    ]]>
+    </sql>
+  </command>
+  
+   
+ 
+</commands>

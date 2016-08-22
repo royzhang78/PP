@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<commands>
+
+  <command >
+    <desription>
+      SQL文的用途的描述
+    </desription>
+    <sqlname>insertTUserBase</sqlname>
+    <sql><![CDATA[
+		insert into t_user_base
+		(
+			u_ppid,
+			u_status,
+			u_mail,
+			u_phone,
+			u_createtime,
+			u_deviceid,
+			u_point,
+			u_price,
+			u_releaseChannel,
+			gpsad_id,
+			android_id,
+			u_idfa
+		)values(
+			#u_ppid#,
+			'2',
+			#u_mail#,
+			#u_phone#,
+			now(),
+			#u_deviceid#,
+			0,
+			0,
+			#u_releaseChannel#,
+			#gpsad_id#,
+			#android_id#,
+			#idfa#
+		)
+		
+    ]]>
+    </sql>
+  </command>
+
+<command >
+    <desription>
+      SQL文的用途的描述
+    </desription>
+    <sqlname>findTUserBaseByPPidAndStatus</sqlname>
+    <sql><![CDATA[
+		select count(*) from t_user_base where u_ppid=#u_ppid# and u_status=2
+  
+   ]]>
+    </sql>
+  </command>
+  
+  
+  
+  
+  <command >
+    <desription>
+      SQL文的用途的描述
+    </desription>
+    <sqlname>updateTUserBase</sqlname>
+    <sql><![CDATA[
+		update t_user_base set u_releaseChannel=#u_releaseChannel# , gpsad_id=#gpsad_id# ,android_id=#android_id# where u_ppid=#u_ppid# 		
+    ]]>
+    </sql>
+  </command>
+ 
+</commands>

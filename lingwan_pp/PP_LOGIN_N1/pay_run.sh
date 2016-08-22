@@ -1,0 +1,1 @@
+nohup java -Djava.ext.dirs=../lib -Xms128m -Xmx512m -XX:+UseParallelGC -XX:ParallelGCThreads=4  com.rodcell.server.http.Server &

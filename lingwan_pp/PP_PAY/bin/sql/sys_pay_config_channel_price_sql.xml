@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<commands>
+
+  <command >
+    <desription>
+      SQL文的用途的描述
+    </desription>
+    <sqlname>findsysPayConfigChannelPrice</sqlname>
+    <sql><![CDATA[
+		select * from sys_pay_config_channel_price
+    ]]>
+    </sql>
+  </command>
+
+
+
+  <command >
+    <desription>
+      SQL文的用途的描述
+    </desription>
+    <sqlname>findsysPayConfigChannelPriceByPrice</sqlname>
+    <sql><![CDATA[
+		select * from sys_pay_config_channel_price 
+		where (pricepoin=#pricepoin#
+		and channel_type=#channel_type#
+		and currency=#currency# and type=0) 
+		or 
+		(channel_type=#channel_type# 
+		and currency=#currency# 
+		and type=1)
+		
+    ]]>
+    </sql>
+  </command>
+  
+  
+  
+
+  <command >
+    <desription>
+      SQL文的用途的描述
+    </desription>
+    <sqlname>findsysPayConfigChannelPriceBYpriceAndCurrency</sqlname>
+    <sql><![CDATA[
+		  select * from sys_pay_config_channel_price m WHERE m.pricepoin=#product_price# and m.currency=#product_currency# and `status`=2
+    ]]>
+    </sql>
+  </command>
+  
+  
+</commands>

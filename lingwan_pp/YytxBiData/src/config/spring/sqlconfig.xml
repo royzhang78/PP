@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop" xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="
+        http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd
+        http://www.springframework.org/schema/tx
+       	http://www.springframework.org/schema/tx/spring-tx.xsd
+        http://www.springframework.org/schema/aop
+        http://www.springframework.org/schema/aop/spring-aop.xsd">
+        
+        
+ 
+   
+	
+	
+	<!-- 配置SQL语句的XML文件，该实例用来解析XML文件获取SQL语句 -->
+	<bean id="sqlxmlManagement" class="org.tp.comm.util.SqlXmlParser">
+		<property name="mappingDirectoryLocations">
+			<list>
+				<value>classpath*:/sql/*sql*.xml</value>
+			</list>
+		</property>
+	</bean>
+	
+	
+	<!--
+	
+	
+	<bean id="MailManagement" class="com.tp.comm.util.MailParser">
+		<property name="mappingDirectoryLocations">
+			<list>
+				<value>classpath*:/web/email/*.tpl</value>
+			</list>
+		</property>
+	</bean>
+	-->
+	
+	
+	
+	<bean id="queryDataSource" class="com.alibaba.druid.pool.DruidDataSource"  
+       init-method="init" destroy-method="close">  
+        <!-- 数据库基本信息配置 -->
+        <property name="driverClassName" value="${db.driver}" />
+        <property name="url" value="${db1.url}" />
+        <property name="username" value="${db1.username}" />
+        <property name="password" value="${db1.password}" />        
+        <!-- 初始化连接数量 -->
+        <property name="initialSize" value="${db1.initialSize}" />
+        <!-- 最大并发连接数 -->
+        <property name="maxActive" value="${db1.maxActive}" />
+        <!-- 最大空闲连接数
+        <property name="maxIdle" value="${db1.maxIdle}" /> -->
+        <!-- 最小空闲连接数 -->
+        <property name="minIdle" value="${db1.minIdle}" />
+        <!-- 配置获取连接等待超时的时间 -->     
+        <property name="maxWait" value="${druid.maxWait}" />
+        <!-- 超过时间限制是否回收 -->
+        <property name="removeAbandoned" value="${druid.removeAbandoned}" />
+        <!-- 超过时间限制多长； -->
+        <property name="removeAbandonedTimeout" value="${druid.removeAbandonedTimeout}" />
+        <!-- 配置间隔多久才进行一次检测，检测需要关闭的空闲连接，单位是毫秒 -->
+        <property name="timeBetweenEvictionRunsMillis" value="${druid.timeBetweenEvictionRunsMillis}" />
+        <!-- 配置一个连接在池中最小生存的时间，单位是毫秒 -->
+        <property name="minEvictableIdleTimeMillis" value="${druid.minEvictableIdleTimeMillis}" />
+        <!-- 用来检测连接是否有效的sql，要求是一个查询语句-->
+        <property name="validationQuery" value="${druid.validationQuery}" />
+        <!-- 申请连接的时候检测 -->
+        <property name="testWhileIdle" value="${druid.testWhileIdle}" />
+        <!-- 申请连接时执行validationQuery检测连接是否有效，配置为true会降低性能 -->
+        <property name="testOnBorrow" value="${druid.testOnBorrow}" />
+        <!-- 归还连接时执行validationQuery检测连接是否有效，配置为true会降低性能  -->
+        <property name="testOnReturn" value="${druid.testOnReturn}" />
+        <!-- 打开PSCache，并且指定每个连接上PSCache的大小 -->
+        <property name="poolPreparedStatements" value="${druid.poolPreparedStatements}" />     
+        <property name="maxPoolPreparedStatementPerConnectionSize" value="${druid.maxPoolPreparedStatementPerConnectionSize}" />
+        <!--属性类型是字符串，通过别名的方式配置扩展插件，常用的插件有：                 
+                监控统计用的filter:stat
+                日志用的filter:log4j
+               防御SQL注入的filter:wall -->
+        <property name="filters" value="${druid.filters}" />       
+    </bean>  
+    
+    
+    	 
+	<bean id="myTransactionManagerQuery"
+		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="queryDataSource">
+		</property>
+	</bean>
+	
+	 
+	
+	
+	
+	
+	
+	<bean id="updateDataSource" class="com.alibaba.druid.pool.DruidDataSource"  
+        init-method="init" destroy-method="close">  
+       <!-- 数据库基本信息配置 -->
+        <property name="driverClassName" value="${db.driver}" />
+        <property name="url" value="${db2.url}" />
+        <property name="username" value="${db2.username}" />
+        <property name="password" value="${db2.password}" />        
+        <!-- 初始化连接数量 -->
+        <property name="initialSize" value="${db2.initialSize}" />
+        <!-- 最大并发连接数 -->
+        <property name="maxActive" value="${db2.maxActive}" />
+        <!-- 最大空闲连接数 
+        <property name="maxIdle" value="${db2.maxIdle}" />-->
+        <!-- 最小空闲连接数 -->
+        <property name="minIdle" value="${db2.minIdle}" />
+        <!-- 配置获取连接等待超时的时间 -->     
+        <property name="maxWait" value="${druid.maxWait}" />
+        <!-- 超过时间限制是否回收 -->
+        <property name="removeAbandoned" value="${druid.removeAbandoned}" />
+        <!-- 超过时间限制多长； -->
+        <property name="removeAbandonedTimeout" value="${druid.removeAbandonedTimeout}" />
+        <!-- 配置间隔多久才进行一次检测，检测需要关闭的空闲连接，单位是毫秒 -->
+        <property name="timeBetweenEvictionRunsMillis" value="${druid.timeBetweenEvictionRunsMillis}" />
+        <!-- 配置一个连接在池中最小生存的时间，单位是毫秒 -->
+        <property name="minEvictableIdleTimeMillis" value="${druid.minEvictableIdleTimeMillis}" />
+        <!-- 用来检测连接是否有效的sql，要求是一个查询语句-->
+        <property name="validationQuery" value="${druid.validationQuery}" />
+        <!-- 申请连接的时候检测 -->
+        <property name="testWhileIdle" value="${druid.testWhileIdle}" />
+        <!-- 申请连接时执行validationQuery检测连接是否有效，配置为true会降低性能 -->
+        <property name="testOnBorrow" value="${druid.testOnBorrow}" />
+        <!-- 归还连接时执行validationQuery检测连接是否有效，配置为true会降低性能  -->
+        <property name="testOnReturn" value="${druid.testOnReturn}" />
+        <!-- 打开PSCache，并且指定每个连接上PSCache的大小 -->
+        <property name="poolPreparedStatements" value="${druid.poolPreparedStatements}" />     
+        <property name="maxPoolPreparedStatementPerConnectionSize" value="${druid.maxPoolPreparedStatementPerConnectionSize}" />
+        <!--属性类型是字符串，通过别名的方式配置扩展插件，常用的插件有：                 
+                监控统计用的filter:stat
+                日志用的filter:log4j
+               防御SQL注入的filter:wall -->
+        <property name="filters" value="${druid.filters}" />       
+    </bean>  
+    
+    
+    	 
+	<bean id="myTransactionManagerUpdate"
+		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="updateDataSource">
+		</property>
+	</bean>
+	
+	 
+	<bean id="dbManagement" class="org.tp.db.impl.DBManagementImpl"> 
+		<property name="queryDataSource" ref="queryDataSource">
+		</property>
+		<property name="updateDataSource" ref="updateDataSource">
+		</property>
+		
+	</bean>
+		
+
+	<tx:annotation-driven transaction-manager="myTransactionManagerUpdate" />
+	
+		
+
+	<tx:annotation-driven transaction-manager="myTransactionManagerQuery" />
+	
+	
+ 
+
+	  
+</beans>

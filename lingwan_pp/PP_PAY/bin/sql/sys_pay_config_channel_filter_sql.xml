@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<commands>
+
+  <command >
+    <desription>
+      SQL文的用途的描述
+    </desription>
+    <sqlname>findsyspayconfigchannelfilter</sqlname>
+    <sql><![CDATA[
+		select * from sys_pay_config_channel_filter
+    ]]>
+    </sql>
+  </command>
+
+   <command >
+    <desription>
+      SQL文的用途的描述
+    </desription>
+    <sqlname>findsyspayconfigchannelfilterbyChannleType</sqlname>
+    <sql><![CDATA[
+		select * from sys_pay_config_channel_filter where channel_id=#channel_id# and type=#type#
+    ]]>
+    </sql>
+  </command>
+   
+  
+  
+</commands>

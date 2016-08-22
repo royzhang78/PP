@@ -1,0 +1,1 @@
+cat login.pid | xargs kill -9

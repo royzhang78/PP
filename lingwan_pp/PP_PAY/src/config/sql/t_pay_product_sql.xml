@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<commands>
+
+  <command >
+    <desription>
+      SQL文的用途的描述
+    </desription>
+    <sqlname>findAllPayProduct</sqlname>
+    <sql><![CDATA[
+		select * from t_pay_product
+    ]]>
+    </sql>
+  </command>
+
+
+ <command >
+    <desription>
+      SQL文的用途的描述
+    </desription>
+    <sqlname>findPayProductByName</sqlname>
+    <sql><![CDATA[
+		select * from t_pay_product where product_name=#product_name#
+    ]]>
+    </sql>
+  </command>
+  
+   <command >
+    <desription>
+      SQL文的用途的描述
+    </desription>
+    <sqlname>findPayProductById</sqlname>
+    <sql><![CDATA[
+		select * from t_pay_product where product_id=#product_id#
+    ]]>
+    </sql>
+  </command>
+  
+  
+  <command >
+    <desription>
+      SQL文的用途的描述
+    </desription>
+    <sqlname>findPayProductBySName</sqlname>
+    <sql><![CDATA[
+		select * from t_pay_product where sid=(select s_id from t_pay_server where s_name=#s_name#) and product_status=2
+    ]]>
+    </sql>
+  </command>
+  
+  
+  
+   <command >
+    <desription>
+      SQL文的用途的描述
+    </desription>
+    <sqlname>findPayProductBySidAndName</sqlname>
+    <sql><![CDATA[
+		select * from t_pay_product where product_name=#product_name# and sid=#sid# and product_currency=#product_currency#
+    ]]>
+    </sql>
+  </command>
+   
+   
+   
+   
+    <command >
+    <desription>
+      SQL文的用途的描述
+   		2014-11-19   
+      select  (select returnLanguage from t_pay_cash_card_showname g where g.channel_id=a.channel_type and `language`=currency ) as returnLanguage ,(select c.showimg from t_pay_channel c where c.channel_id=a.channel_type) as showimg,(select c.channel_name from t_pay_channel c where c.channel_id=a.channel_type) as defname ,b.type,a.id ,a.pricepoin,a.channel_type,a.currency,(select card_show_name from t_pay_cash_card_showname g where g.channel_id=a.channel_type and `language`=currency ) as showname ,(select c.callurl from t_pay_channel c where c.channel_id=a.channel_type) as callurl  from sys_pay_config_channel_price	a  join t_pay_channel b on a.channel_type=b.channel_id where a.`status`=2 and b.type=2 and b.`enable`=1 and pricepoin=#pricepoin# and currency=#currency#
+   
+   
+   select b.showimg,b.callurl,b.channel_id,a.product_currency,a.product_price,(select group_concat(pricepoin separator ',') from sys_pay_config_channel_price p  where b.channel_id=p.channel_type and b.currency=p.currency) as pricepoin from t_pay_product a ,t_pay_channel  b where a.product_status='2' and  b.`enable`=1 and  a.product_currency=B.currency and a.sid=#sid# AND A.product_name=#product_name#  and a.pay_channel_type=2 and (
+		SELECT
+			group_concat(pricepoin SEPARATOR ',')
+		FROM
+			sys_pay_config_channel_price p
+		WHERE
+			b.channel_id = p.channel_type
+		AND b.currency = p.currency
+		and p.pricepoin=a.product_price
+	) is not null
+    </desription>
+    <sqlname>findPayProductBySCashCardList1</sqlname>
+    <sql><![CDATA[
+    	select b.showimg,b.callurl,b.channel_id,a.product_currency,a.product_price,(select group_concat(pricepoin separator ',') from sys_pay_config_channel_price p  where b.channel_id=p.channel_type and b.currency=p.currency) as pricepoin from t_pay_product a ,t_pay_channel  b where a.product_status='2' and  b.`enable`=1 and  a.product_currency=B.currency and a.sid=#sid# AND A.product_name=#product_name# 
+    	and b.type=2 and ((
+		SELECT
+			group_concat(pricepoin SEPARATOR ',')
+		FROM
+			sys_pay_config_channel_price p
+		WHERE
+			b.channel_id = p.channel_type
+		AND b.currency = p.currency
+		and p.pricepoin=a.product_price
+	) is not null or (product_currency='Chips' AND B.currency='Chips')
+)   GROUP BY  b.showimg,
+	b.callurl,
+	b.channel_id,
+	a.product_currency,
+	a.product_price, pricepoin
+		 ]]>
+    </sql>
+  </command>
+  
+  
+  
+   <command >
+    <desription>
+     </desription>
+    <sqlname>GetPayProductCofig_SQL</sqlname>
+    <sql><![CDATA[
+    		SELECT
+	d.product_id,
+	d.product_name,
+	d.product_showname,
+	d.product_point,
+	d.product_type,
+	d.pay_channel_type,
+	d.product_price,
+	d.product_currency,
+	d.product_parameter 
+
+from t_pay_product d
+WHERE
+	d.sid = (
+		SELECT
+			s_id
+		FROM
+			t_pay_server s
+		WHERE
+			s.s_name = #s_name#
+	)
+AND d.product_name = #product_name#
+AND product_status = 2
+ORDER BY
+	pay_channel_type
+    	 ]]>
+    </sql>
+  </command>
+  
+ 
+</commands>

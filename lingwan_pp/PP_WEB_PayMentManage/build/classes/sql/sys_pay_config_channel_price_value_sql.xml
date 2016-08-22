@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<commands>
+
+  <command >
+    <desription>
+      SQL文的用途的描述
+    </desription>
+    <sqlname>findsysPayConfigChannelPriceValueByfid</sqlname>
+    <sql><![CDATA[
+		select * from sys_pay_config_channel_price_value where f_id=#f_id#
+    ]]>
+    </sql>
+  </command>
+
+
+ 
+  
+ 
+</commands>

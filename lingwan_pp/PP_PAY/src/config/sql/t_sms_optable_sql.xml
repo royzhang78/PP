@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<commands>
+
+  <command >
+    <desription>
+      SQL文的用途的描述
+    </desription>
+    <sqlname>findOP</sqlname>
+    <sql><![CDATA[
+    select w.*,e.percentage from t_sms_detail w ,t_sms_optable d,t_sms_sptable e where  
+	w.operatorid =d.operatorid 
+	and  w.spid=e.spid 
+	and d.plmn=#plmn#
+	#if (spid == null)  
+		and	1=1	
+	#else 
+		and w.id in ($spid$)
+	#end
+	and cast(w.price as decimal(10,2))=cast(#price# as decimal(10,2)) and w.currency=#currency# and e.`enable`=1 and w.`enable`=1
+	
+    ]]>
+    </sql>
+  </command>
+
+  
+   
+ 
+</commands>

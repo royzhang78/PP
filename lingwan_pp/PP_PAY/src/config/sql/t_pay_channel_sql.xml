@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<commands>
+
+  <command >
+    <desription>
+      查询所有的支付渠道
+    </desription>
+    <sqlname>findPayChannel</sqlname>
+    <sql><![CDATA[
+		select * from t_pay_channel
+    ]]>
+    </sql>
+  </command>
+
+  
+  <command >
+    <desription>
+      查询所有的支付渠道
+    </desription>
+    <sqlname>insertPayChannel</sqlname>
+    <sql><![CDATA[
+		insert into   t_pay_channel(
+			channel_id,
+			channel_name,
+			type
+		)
+		values
+		(
+			#channel_id#,
+			#channel_name#,
+			#type#
+		)
+    ]]>
+    </sql>
+  </command>
+  
+  
+  <command >
+    <desription>
+      查询所有的支付渠道
+    </desription>
+    <sqlname>updatePayChannel</sqlname>
+    <sql><![CDATA[
+		update t_pay_channel set
+			channel_name=#channel_name#,
+			type=#type#
+			where channel_id=#channel_id#
+		
+    ]]>
+    </sql>
+  </command>
+ 
+</commands>

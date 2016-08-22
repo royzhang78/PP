@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<commands>
+
+  <command >
+    <desription>
+      SQL文的用途的描述
+    </desription>
+    <sqlname>findt_apk_game_param</sqlname>
+    <sql><![CDATA[
+    	SELECT apk_key,apk_value FROM t_apk_game_param WHERE S_ID=#s_id#
+		UNION ALL 
+		SELECT apk_key,apk_value FROM t_apk_comm 
+    ]]>
+    </sql>
+  </command>
+
+ 
+</commands>

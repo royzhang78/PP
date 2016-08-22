@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<commands>
+
+  <command >
+    <desription>
+      SQL文的用途的描述     
+      
+      150402
+      select * from t_user_login_channel where 
+		login_type=#login_type#
+		and s_id=#s_id#
+		and login_name=#login_name#
+		#if (login_type =="0")  
+		and login_password=#login_password# and LENGTH(login_password)>0
+		#end
+		
+    </desription>
+    <sqlname>findLoginUser</sqlname>
+    <sql><![CDATA[
+		select * from t_user_login_channel where 
+		login_type=#login_type#		
+		and login_name=#login_name#
+		#if (login_type =="0")  
+		and login_password=#login_password# and LENGTH(login_password)>0
+		#end
+    ]]>
+    </sql>
+  </command>
+  
+  
+  
+  
+   <command >
+    <desription>
+      SQL文的用途的描述     
+      
+    </desription>
+    <sqlname>findLoginUserByPPid</sqlname>
+    <sql><![CDATA[
+		select login_name,login_type,createtime,s_id,id from t_user_login_channel where u_ppid=#u_ppid#		
+    ]]>
+    </sql>
+  </command>
+  
+  
+   <command >
+    <desription>
+      SQL文的用途的描述     
+      
+    </desription>
+    <sqlname>deleteLoginUserByPPid</sqlname>
+    <sql><![CDATA[
+		delete from t_user_login_channel where id=#id#		
+    ]]>
+    </sql>
+  </command>
+  
+  
+
+
+ <command >
+    <desription>
+      SQL文的用途的描述
+    </desription>
+    <sqlname>insertLoginUserChannel</sqlname>
+    <sql><![CDATA[
+		insert into t_user_login_channel (
+			u_ppid,
+			s_id,			
+			
+			login_name,
+			login_type,
+			login_password
+		)
+		values
+		(
+			#u_ppid#,
+			#s_id#,
+			#login_name#,
+			#login_type#,
+			#if (login_password != null && login_password != "")  
+				login_password
+			#else 
+				''
+			#end
+		)
+    ]]>
+    </sql>
+  </command>
+ 
+</commands>

@@ -1,0 +1,1 @@
+nohup java -Djava.ext.dirs=../lib -Xms128m -Xmx1024m -XX:+UseParallelGC -XX:ParallelGCThreads=4  org.tp.zb.server.TPServer > console.log & echo $! > login.pid &

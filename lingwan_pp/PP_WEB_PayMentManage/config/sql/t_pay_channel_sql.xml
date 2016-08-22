@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<commands>
+
+  <command >
+    <desription>
+      查询所有的支付渠道
+    </desription>
+    <sqlname>findPayChannel</sqlname>
+    <sql><![CDATA[
+		select * from t_pay_channel
+    ]]>
+    </sql>
+  </command>
+
+  
+  
+ 
+</commands>

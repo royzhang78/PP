@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop" xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="
+        http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd
+        http://www.springframework.org/schema/tx
+       	http://www.springframework.org/schema/tx/spring-tx.xsd
+        http://www.springframework.org/schema/aop
+        http://www.springframework.org/schema/aop/spring-aop.xsd">
+        
+        
+  <bean id="connectionFactory" class="org.apache.activemq.pool.PooledConnectionFactory"> 
+    <property name="connectionFactory"> 
+      <bean class="org.apache.activemq.ActiveMQConnectionFactory"> 
+        <property name="brokerURL"> 
+          <value>tcp://localhost:61616</value> 
+        </property> 
+      </bean> 
+    </property> 
+  </bean> 
+    
+  <bean id="dest" class="org.apache.activemq.command.ActiveMQQueue"> 
+    <constructor-arg value="myDest"/> 
+  </bean> 
+    
+  <bean id="jmsTemplate" class="org.springframework.jms.core.JmsTemplate"> 
+    <property name="connectionFactory" ref="connectionFactory"></property> 
+    <property name="defaultDestination" ref="dest"/> 
+  </bean> 
+    
+ <!-- 
+  <bean id="mq" class="com.rodcell.mq.MQMessageSender"> 
+    <property name="jmsTemplate" ref="jmsTemplate"></property> 
+</bean> 
+  -->
+  
+  <context:component-scan base-package="com.rodcell.mq" />
+</beans>

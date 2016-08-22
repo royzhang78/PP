@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<commands>
+
+  <command >
+    <desription>
+      SQL文的用途的描述。例： 搜索用户时的动态条件SQL文。  $!{id.asString()} 将html转义
+    </desription>
+    <sqlname>test_sql_1</sqlname>
+    <sql><![CDATA[
+		insert into `testtable1` (a) values(#a#)
+		#if (id == null)  
+			AND id=#id#   
+		#else 
+			AND id2=#id#  
+		#end
+		 
+    ]]>
+    </sql>
+  </command>
+
+
+  <command >
+    <desription>
+      SQL文的用途的描述。例： 搜索用户时的动态条件SQL文。  $!{id.asString()} 将html转义
+    </desription>
+    <sqlname>test_sql_2</sqlname>
+    <sql><![CDATA[
+		insert into `testtable2` (a) values(#a#)
+		#if (id == null)  
+			AND id=#id#   
+		#else 
+			AND id2=#id#  
+		#end
+		 
+    ]]>
+    </sql>
+  </command>
+  
+  
+  <command >
+    <desription>
+      SQL文的用途的描述。例： 搜索用户时的动态条件SQL文。  $!{id.asString()} 将html转义
+    </desription>
+    <sqlname>test_sql_3</sqlname>
+    <sql><![CDATA[
+		select '中文' as c  from dual
+		 
+    ]]>
+    </sql>
+  </command>
+  
+  
+  
+  
+  
+  
+  
+   <command >
+    <desription>
+      SQL文的用途的描述。例： 搜索用户时的动态条件SQL文。  $!{id.asString()} 将html转义
+    </desription>
+    <sqlname>test_sql_4</sqlname>
+    <sql><![CDATA[
+		 
+    ]]>
+    </sql>
+  </command>
+ 
+</commands>

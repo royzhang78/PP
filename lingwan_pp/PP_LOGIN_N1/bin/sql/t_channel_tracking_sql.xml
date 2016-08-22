@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<commands>
+
+  <command >
+    <desription>
+      SQL文的用途的描述
+    </desription>
+    <sqlname>insertTChannelTracking</sqlname>
+    <sql><![CDATA[		
+		INSERT INTO t_channel_tracking  (U_ID,G_ID,CHANNEL_ID,IMSI,IMEI,MARK,CREATE_TIME)VALUES  (#u_id#,#g_id#,#channel_id#,#imsi#,#imei#,#mark#,now())
+    ]]>
+    </sql>
+  </command>
+
+ 
+</commands>

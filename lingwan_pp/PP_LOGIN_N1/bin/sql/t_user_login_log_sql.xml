@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<commands>
+
+
+<command >
+    <desription>
+      SQL文的用途的描述
+    </desription>
+    <sqlname>createloginlog</sqlname>
+    <sql><![CDATA[
+CREATE TABLE IF NOT EXISTS `t_user_login_log_$s_id$` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `login_name` varchar(100) NOT NULL,
+  `login_type` int(2) DEFAULT NULL COMMENT '0pp帐号系统,1GS帐号直登，2pp udid直等，3facebook',
+  `u_deviceid` varchar(50) NOT NULL COMMENT '设备号(用于查询查询小号)',
+  `u_releaseChannel` varchar(50) DEFAULT NULL COMMENT '发布渠道',
+  `serverName` varchar(50) DEFAULT NULL COMMENT '登录服务器名',
+  `locale` varchar(255) DEFAULT NULL COMMENT '客户端语种',
+  `clientType` varchar(255) DEFAULT NULL COMMENT '客户端类型',
+  `accessToken` varchar(2000) DEFAULT NULL,
+  `login_ip` varchar(150) DEFAULT NULL COMMENT '登录IP',
+  `login_time` timestamp NULL DEFAULT CURRENT_TIMESTAMP COMMENT '登录时间',
+  `userId` varchar(100) DEFAULT NULL COMMENT '第三方登录帐号',
+  `userloginType` varchar(100) DEFAULT NULL COMMENT '第三方登录类型 3为facebook',
+  `u_ppid` bigint(20) DEFAULT NULL,
+  `s_id` bigint(20) DEFAULT NULL COMMENT '服务器id',
+  `u_info` text,
+  PRIMARY KEY (`id`),
+  KEY `u_ppid` (`u_ppid`),
+  KEY `login_name` (`login_name`),
+  KEY `idx_login_log_login_time` (`login_time`)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
+ ]]>
+    </sql>
+  </command>
+
+  <command >
+    <desription>
+      SQL文的用途的描述
+    </desription>
+    <sqlname>insertloginlog</sqlname>
+    <sql><![CDATA[
+		insert into t_user_login_log_$s_id$
+		(
+			login_name,
+			login_type,
+			u_deviceid,
+			u_releaseChannel,
+			serverName,
+			locale,
+			clientType,
+			accessToken,
+			login_ip,
+			userId,
+			userloginType,
+			u_ppid,
+			s_id,
+			u_info
+		)values(
+			#login_name#,
+			#login_type#,
+			#u_deviceid#,
+			#u_releaseChannel#,
+			#serverName#,
+			#locale#,
+			#clientType#,
+			#accessToken#,
+			#login_ip#,
+			#userId#,
+			#userloginType#,
+			#u_ppid#,
+			#s_id#,
+			#u_info#
+		)
+		
+    ]]>
+    </sql>
+  </command>
+
+  
+  </commands>

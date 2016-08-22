@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<commands>
+
+  <command >
+    <desription>
+      SQL文的用途的描述
+    </desription>
+    <sqlname>insertSPTable</sqlname>
+    <sql><![CDATA[
+    	insert into t_sms_sptable
+    	(
+			spid,
+			spname,
+			enable,
+			percentage,
+    	)values(
+    		#spid#,
+			#spname#,
+			1,
+			1,
+    	)
+    	
+    ]]>
+    </sql>
+  </command>
+
+  
+   <command >
+    <desription>
+      SQL文的用途的描述
+    </desription>
+    <sqlname>updateSPTable</sqlname>
+    <sql><![CDATA[
+    	update t_sms_sptable set 
+			spname=#spname# where spid=#spid#
+    	
+    ]]>
+    </sql>
+  </command>
+ 
+</commands>

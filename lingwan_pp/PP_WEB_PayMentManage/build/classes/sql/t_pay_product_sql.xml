@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<commands>
+
+  <command >
+    <desription>
+      SQL文的用途的描述
+    </desription>
+    <sqlname>findAllPayProduct</sqlname>
+    <sql><![CDATA[
+		select * from t_pay_product
+    ]]>
+    </sql>
+  </command>
+
+
+ <command >
+    <desription>
+      SQL文的用途的描述
+    </desription>
+    <sqlname>findPayProductByName</sqlname>
+    <sql><![CDATA[
+		select * from t_pay_product where product_name=#product_name# and sid=#sid#
+    ]]>
+    </sql>
+  </command>
+  
+   <command >
+    <desription>
+      SQL文的用途的描述
+    </desription>
+    <sqlname>findPayProductById</sqlname>
+    <sql><![CDATA[
+		select * from t_pay_product where product_id=#product_id#
+    ]]>
+    </sql>
+  </command>
+  
+   
+   
+    <command >
+    <desription>
+      SQL文的用途的描述。例： 搜索用户时的动态条件SQL文。  $!{id.asString()} 将html转义
+    </desription>
+    <sqlname>findProduct</sqlname>
+    <sql><![CDATA[
+		select * from t_pay_product where
+		
+		#if (product_name != null)  
+				 `product_name`  like '%$product_name$%' and
+		#end
+		#if (sid != null)  
+			`sid` = #sid# and
+		#end
+		1=1 order by product_id desc LIMIT #start#,#limit#
+		
+    ]]>
+    </sql>
+  </command>
+  
+   <command >
+    <desription>
+      SQL文的用途的描述。例： 搜索用户时的动态条件SQL文。  $!{id.asString()} 将html转义
+    </desription>
+    <sqlname>findProductCount</sqlname>
+    <sql><![CDATA[
+		select count(*) from t_pay_product where
+		
+		#if (product_name != null)  
+			 `product_name` like '%$product_name$%' and
+		#end
+		#if (sid != null)  
+			`sid` = #sid# and
+		#end
+		1=1
+		
+    ]]>
+    </sql>
+  </command>
+  
+  
+   <command >
+    <desription>
+      SQL文的用途的描述。例： 搜索用户时的动态条件SQL文。  $!{id.asString()} 将html转义
+    </desription>
+    <sqlname>insertProduct</sqlname>
+    <sql><![CDATA[
+		insert into t_pay_product (
+		product_name,
+		product_type,
+		product_status,
+		product_point,
+		product_price,
+		product_currency,
+		product_create_time,
+		product_parameter,
+		product_showname,
+		sid,
+		pay_channel_type
+		)values(
+		#product_name#,
+		#product_type#,
+		#product_status#,
+		#product_point#,
+		#product_price#,
+		#product_currency#,
+		now(),
+		#product_parameter#,
+		#product_showname#,
+		#sid#,
+		#pay_channel_type#
+		)
+		
+    ]]>
+    </sql>
+  </command>
+
+  
+   <command >
+    <desription>
+      SQL文的用途的描述。例： 搜索用户时的动态条件SQL文。  $!{id.asString()} 将html转义
+    </desription>
+    <sqlname>updateProduct</sqlname>
+    <sql><![CDATA[
+		update t_pay_product  
+		set
+		product_type=#product_type#,
+		product_status=#product_status#,
+		product_point=#product_point#,
+		product_price=#product_price#,
+		product_currency=#product_currency#, 
+		product_parameter=#product_parameter#,
+		product_showname=#product_showname#,
+		pay_channel_type=#pay_channel_type#
+		 where product_id=#product_id#
+		
+    ]]>
+    </sql>
+  </command>
+ 
+ 
+</commands>

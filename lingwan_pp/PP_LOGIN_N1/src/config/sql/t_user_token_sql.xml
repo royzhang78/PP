@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<commands>
+
+  <command >
+    <desription>
+      SQL文的用途的描述
+    </desription>
+    <sqlname>insertt_user_token</sqlname>
+    <sql><![CDATA[
+		insert into t_user_token
+		(
+			u_ppid,
+			token,
+			updatetime
+
+		)values(
+			#u_ppid#,
+			#token#,
+			sysdate()
+		)
+		
+    ]]>
+    </sql>
+  </command>
+
+ <command >
+    <desription>
+      SQL文的用途的描述
+    </desription>
+    <sqlname>findTUserBaseByToken</sqlname>
+    <sql><![CDATA[
+		select * from t_user_token where u_ppid=#u_ppid#  and token=#token# and (sysdate()-updatetime)<=500;
+  
+   ]]>
+    </sql>
+  </command>
+  
+  
+  <command >
+    <desription>
+      SQL文的用途的描述
+    </desription>
+    <sqlname>updatet_user_token</sqlname>
+    <sql><![CDATA[
+		update t_user_token set token=#token# , updatetime=sysdate()   where u_ppid=#u_ppid# 		
+    ]]>
+    </sql>
+  </command>
+ 
+</commands>

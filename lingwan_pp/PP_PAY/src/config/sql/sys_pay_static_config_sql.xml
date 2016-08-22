@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<commands>
+
+  <command >
+    <desription>
+      查询静态表信息
+    </desription>
+    <sqlname>findPayStaticConfigbyKey</sqlname>
+    <sql><![CDATA[
+		select * from sys_pay_static_config where `key`=#key#
+    ]]>
+    </sql>
+  </command>
+ 
+ 
+ 
+ <command >
+    <desription>
+      查询静态表信息
+    </desription>
+    <sqlname>findPayStaticConfigAll</sqlname>
+    <sql><![CDATA[
+		select * from sys_pay_static_config
+    ]]>
+    </sql>
+  </command>
+  
+</commands>

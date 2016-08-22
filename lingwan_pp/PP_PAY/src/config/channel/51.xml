@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<commands>
+
+ <command >
+    <desription><![CDATA[
+      	responseStatus用于返回的状态
+      	response用于返回的文本信息（可以自定义模版）
+      	channel_type:0sms,1http,2card,3其他(支付类型)
+      	request_type:http,json,xml(就收消息格式)
+      
+      	
+      	encryptType(消息加密类型如 ：md5，空为不加密验证)
+      	key(消息加密验证字段: $表示读取request,##标识读取静态变量字段 )
+      	callServiceName(消息执行类 必须实现 PayMessageService)
+      	exeServerByServiceName(执行自定义函数类如 需要回调渠道服务器等操作);
+      	
+      	analyze(字段解析parName 是需要解析字段对应名称，source是来源名称如request中的名称  exeClass是解析调用的方法，空为不实用解析方法 )
+      	mol thai card(AIS 12Call 3G Cash Card),(Truemoney Card),(MOLPoints Card),(Zest Card)
+      	mol thai card统一支付页面
+     ]]>
+     </desription>
+    <channel><![CDATA[
+    {
+    "channen_id":51,
+    "channel_name":"Mol true money",
+    "channel_type":2,
+    "request_type":"http",
+    "mo":{
+    		"callServiceName":"molGameshineService",
+    		"encryptType":"",
+    		"key":"$id$$name$#statickey#",
+    		"keyName":"PasswordHash",
+    		"keyerror":"404",
+	    	
+
+	    	"analyze":[
+		    	{"parName":"payId","source":"smstext","exeClass":"SMSAnalyzeService"},
+		    	{"parName":"unique_key","source":"smsid","exeClass":""}
+	    	],
+	    	"exeServerByServiceName":""
+    	},
+    "notif":{
+    		"encryptType":"",
+    		"key":"$amount$$applicationCode$$channelId$$currencyCode$$customerId$$description$$referenceId$$returnUrl$$version$#molSecretKey_46#",
+    		"keyName":"PasswordHash",
+    		"keyerror":"404",
+	    	"callServiceName":"terminatedService",
+
+	    	"analyze":[ 
+		    	{"parName":"payId","source":"mref_id","exeClass":""},
+		    	{"parName":"unique_key","source":"tranid","exeClass":""}
+	    	],
+	    	"successStatus":{"parName":"reasoncode","code":"000"},
+	    	"errorText":"paymentStatusCode",
+	    	"exeServerByServiceName":""
+    	}
+    }
+    ]]>
+    </channel>
+     <MOresponseStatus><![CDATA[
+		$!{responseStatus.asString()}
+    ]]>
+    </MOresponseStatus>
+    <MOresponse><![CDATA[
+		$!{responseCode.asString()}
+    ]]>
+    </MOresponse>
+    
+    <NotifStatus><![CDATA[
+		$!{responseStatus.asString()}
+    ]]>
+    </NotifStatus>
+    
+    <NotifResponse><![CDATA[
+		$!{responseCode.asString()}
+    ]]>
+    </NotifResponse>
+  </command>
+  
+</commands>

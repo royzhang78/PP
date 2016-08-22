@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<commands>
+
+
+
+ <command >
+    <desription>
+      SQL文的用途的描述。
+    </desription>
+    <sqlname>findExePayMainRetryList</sqlname>
+    <sql><![CDATA[
+		select * from  t_pay_main_retry a where exe_time=#exe_time# LIMIT $start$, $end$
+    ]]>
+    </sql>
+  </command>
+  
+ 
+   
+ 
+  <command >
+    <desription><![CDATA[
+      SQL文的用途的描述。
+      
+      update t_pay_main_retry a set `status`=1 , exe_time=#exe_time# ,call_server_count=call_server_count+1  
+		where server_id=#server_id# and `status`=0  and  next_time<=NOW() 
+     ]]></desription>
+    <sqlname>updateExePayMainRetry</sqlname>
+    <sql><![CDATA[
+		update t_pay_main_retry a set `status`=1 , exe_time=#exe_time# ,call_server_count=call_server_count+1  
+		where  `status`=0   and call_server_count<=5
+    ]]>
+    </sql>
+  </command>
+  
+  
+   <command >
+    <desription><![CDATA[
+      SQL文的用途的描述。
+      update t_pay_main_retry a set `status`=0 
+		where server_id=#server_id#  and  next_time<=NOW() and `status`=1
+    ]]> </desription>
+    <sqlname>initupdateExePayMainRetry</sqlname>
+    <sql><![CDATA[
+		update t_pay_main_retry a set `status`=0 
+		where   next_time<=NOW() and `status`=1
+    ]]>
+    </sql>
+  </command>
+  
+  
+   <command >
+    <desription><![CDATA[
+      SQL文的用途的描述。
+      update t_pay_main_retry a set `status`=0 
+		where server_id=#server_id# and exe_time=#exe_time# and `status`=1
+   ]]> </desription>
+    <sqlname>closeupdateExePayMainRetry</sqlname>
+    <sql><![CDATA[
+		update t_pay_main_retry a set `status`=0 
+		where    exe_time=#exe_time# and `status`=1
+    ]]>
+    </sql>
+  </command>
+  
+  
+  
+  
+   <command >
+    <desription>
+      SQL文的用途的描述。
+    </desription>
+    <sqlname>inserPayMainRetry</sqlname>
+    <sql><![CDATA[
+		insert into t_pay_main_retry
+		(  
+			pay_id,
+			server_id,
+			next_time,
+			call_server_count,
+			start_time,
+			status,
+			exe_time,
+			error_code,
+			error_desc,
+			type
+		)values(
+	 		#pay_id#,
+			#server_id#,
+			#next_time#,
+			#call_server_count#,
+			#start_time#,
+			#status#,
+			#exe_time#,
+			#error_code#,
+			#error_desc#,
+			#type#
+	)
+    ]]>
+    </sql>
+  </command>
+
+  
+  
+  <command >
+    <desription>
+      SQL文的用途的描述。
+    </desription>
+    <sqlname>deletePayMainRetry</sqlname>
+    <sql><![CDATA[
+		delete from  t_pay_main_retry where pay_id=#pay_id#
+		 ]]>
+    </sql>
+  </command>
+  
+  
+   <command >
+    <desription>
+      SQL文的用途的描述。
+    </desription>
+    <sqlname>updatePayMainRetry</sqlname>
+    <sql><![CDATA[
+		update t_pay_main_retry
+		set 
+			#if (server_id != null)  
+				server_id=#server_id#,
+			#end
+			
+			
+			#if (next_time != null)  
+				next_time=#next_time#,
+			#end
+			
+			
+			#if (call_server_count != null)  
+				call_server_count=#call_server_count#,
+			#end
+			
+						
+			#if (start_time != null)  
+				start_time=#start_time#,
+			#end
+			
+					
+			#if (status != null)  
+				status=#status#,
+			#end
+			
+						
+			#if (exe_time != null)  
+				exe_time=#exe_time#,
+			#end
+			
+						
+			#if (error_code != null)  
+				error_code=#error_code#,
+			#end
+			
+			 			
+			#if (error_desc != null)  
+				error_desc=#error_desc#,
+			#end
+			
+						
+			#if (type != null)  
+				type=#type#,
+			#end
+			
+			
+			pay_id=#pay_id#
+		where 
+			pay_id=#pay_id#
+    ]]>
+    </sql>
+  </command>
+</commands>

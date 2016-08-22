@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<commands>
+
+
+<command >
+    <desription>
+      SQL文的用途的描述
+    </desription>
+    <sqlname>createItemFlow</sqlname>
+    <sql><![CDATA[
+CREATE TABLE `ItemFlow_$table_date$` (
+  `Sequence` bigint(4) DEFAULT NULL,
+  `Version` varchar(100) COLLATE utf8_bin DEFAULT NULL,
+  `BatchNo` varchar(50) COLLATE utf8_bin DEFAULT NULL,
+  `GameId` bigint(4) DEFAULT NULL,
+  `GameServerId` bigint(4) DEFAULT NULL,
+  `RegisterChannelId` bigint(4) DEFAULT NULL,
+  `DeviceId` varchar(50) COLLATE utf8_bin DEFAULT NULL,
+  `IMEI` varchar(50) COLLATE utf8_bin DEFAULT NULL,
+  `UserId` bigint(4) DEFAULT NULL,
+  `UserName` varchar(50) COLLATE utf8_bin DEFAULT NULL,
+  `AccountId` bigint(4) DEFAULT NULL,
+  `AccountName` varchar(100) COLLATE utf8_bin DEFAULT NULL,
+  `UserLevel` bigint(4) DEFAULT NULL,
+  `ActionType` bigint(4) DEFAULT NULL,
+  `ReasonType` bigint(4) DEFAULT NULL,
+  `SubReasonType` bigint(4) DEFAULT NULL,
+  `ItemType` bigint(4) DEFAULT NULL,
+  `ItemDetail` bigint(4) DEFAULT NULL,
+  `Count` bigint(4) DEFAULT NULL,
+  `AfterCount` bigint(4) DEFAULT NULL,
+  `OpTime` datetime DEFAULT NULL,
+  `LogTime` datetime DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+ ]]>
+    </sql>
+  </command>
+
+  <command >
+    <desription>
+      SQL文的用途的描述
+    </desription>
+    <sqlname>insertItemFlow</sqlname>
+    <sql><![CDATA[
+		insert into ItemFlow_$table_date$
+		(
+			Sequence,
+			Version,
+			BatchNo,
+			GameId,
+			GameServerId,
+			RegisterChannelId,
+			DeviceId,
+			IMEI,
+			UserId,
+			UserName,
+			AccountId,
+			AccountName,
+			UserLevel,
+			ActionType,
+			ReasonType,
+			SubReasonType,
+			ItemType,
+			ItemDetail,
+			Count,
+			AfterCount,
+			OpTime,
+			LogTime
+		)values(
+			#Sequence#,
+			#Version#,
+			#BatchNo#,
+			#GameId#,
+			#GameServerId#,
+			#RegisterChannelId#,
+			#DeviceId#,
+			#IMEI#,
+			#UserId#,
+			#UserName#,
+			#AccountId#,
+			#AccountName#,
+			#UserLevel#,
+			#ActionType#,
+			#ReasonType#,
+			#SubReasonType#,
+			#ItemType#,
+			#ItemDetail#,
+			#Count#,
+			#AfterCount#,
+			#OpTime#,
+			#LogTime#
+		)
+		
+    ]]>
+    </sql>
+  </command>
+
+  
+  </commands>

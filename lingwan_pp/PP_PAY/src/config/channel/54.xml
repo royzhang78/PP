@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<commands>
+
+ <command >
+    <desription><![CDATA[
+      	一比一  对应 UniPin平台货币单位
+     ]]>
+     </desription>
+    <channel><![CDATA[
+    {
+    "channen_id":54,
+    "channel_name":"UniPin",
+    "channel_type":2,
+    "request_type":"json",
+    "mo":{
+    		
+    	},
+    "notif":{
+    		
+    	}
+    }
+    ]]>
+    </channel>
+     <MOresponseStatus><![CDATA[
+		$!{responseStatus.asString()}
+    ]]>
+    </MOresponseStatus>
+    <MOresponse><![CDATA[
+		$!{responseCode.asString()}
+    ]]>
+    </MOresponse>
+    
+    <NotifStatus><![CDATA[
+		$!{responseStatus.asString()}
+    ]]>
+    </NotifStatus>
+    
+    <NotifResponse><![CDATA[
+		$!{responseCode.asString()}
+    ]]>
+    </NotifResponse>
+  </command>
+  
+</commands>

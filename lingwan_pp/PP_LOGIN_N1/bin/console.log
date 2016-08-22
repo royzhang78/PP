@@ -1,0 +1,22 @@
+Java HotSpot(TM) 64-Bit Server VM warning: Insufficient space for shared memory file:
+   32607
+Try using the -Djava.io.tmpdir= option to select an alternate temp location.
+
+log4j:WARN No such property [maxBackupIndex] in org.apache.log4j.DailyRollingFileAppender.
+log4j:WARN No such property [maxFileSize] in org.apache.log4j.DailyRollingFileAppender.
+log4j:ERROR Could not find value for key log4j.appender.debug
+log4j:ERROR Could not instantiate appender named "debug".
+index.tpl
+22.tpl
+init JSPParser
+/appjava/serverApp/pp_login_new/bin/sql/t_channel_tracking_sql.xml
+/appjava/serverApp/pp_login_new/bin/sql/t_user_base_sql.xml
+/appjava/serverApp/pp_login_new/bin/sql/t_user_login_log_sql.xml
+/appjava/serverApp/pp_login_new/bin/sql/sql_test.xml
+/appjava/serverApp/pp_login_new/bin/sql/t_pay_server_sql.xml
+/appjava/serverApp/pp_login_new/bin/sql/t_user_facebook_sql.xml
+/appjava/serverApp/pp_login_new/bin/sql/t_user_login_channel_sql.xml
+/appjava/serverApp/pp_login_new/bin/sql/t_user_server_sql.xml
+/appjava/serverApp/pp_login_new/bin/sql/t_user_binding_sql.xml
+init SqlXmlParser
+Open your web browser and navigate to http://127.0.0.1:8082/

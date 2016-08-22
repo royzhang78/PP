@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<commands>
+
+
+<command >
+    <desription>
+      SQL文的用途的描述
+    </desription>
+    <sqlname>createMoneyFlow</sqlname>
+    <sql><![CDATA[
+CREATE TABLE `MoneyFlow_$table_date$` (
+  `Version` varchar(100) COLLATE utf8_bin DEFAULT NULL,
+  `BatchNo` varchar(100) COLLATE utf8_bin DEFAULT NULL,
+  `GameId` bigint(4) DEFAULT NULL,
+  `GameServerId` bigint(4) DEFAULT NULL,
+  `RegisterChannelId` bigint(4) DEFAULT NULL,
+  `DeviceId` varchar(50) COLLATE utf8_bin DEFAULT NULL,
+  `IMEI` varchar(50) COLLATE utf8_bin DEFAULT NULL,
+  `UserId` bigint(4) DEFAULT NULL,
+  `UserName` varchar(50) COLLATE utf8_bin DEFAULT NULL,
+  `AccountId` bigint(4) DEFAULT NULL,
+  `AccountName` varchar(100) COLLATE utf8_bin DEFAULT NULL,
+  `UserLevel` bigint(4) DEFAULT NULL,
+  `MoneyType` bigint(4) DEFAULT NULL,
+  `ActionType` bigint(4) DEFAULT NULL,
+  `ReasonType` bigint(4) DEFAULT NULL,
+  `SubReasonType` bigint(4) DEFAULT NULL,
+  `Charge` bigint(4) DEFAULT NULL,
+  `Donate` bigint(4) DEFAULT NULL,
+  `Bind` bigint(4) DEFAULT NULL,
+  `AfterCharge` bigint(4) DEFAULT NULL,
+  `AfterDonate` bigint(4) DEFAULT NULL,
+  `AfterBind` bigint(4) DEFAULT NULL,
+  `OpTime` datetime DEFAULT NULL,
+  `LogTime` datetime DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+ ]]>
+    </sql>
+  </command>
+
+  <command >
+    <desription>
+      SQL文的用途的描述
+    </desription>
+    <sqlname>insertMoneyFlow</sqlname>
+    <sql><![CDATA[
+		insert into MoneyFlow_$table_date$
+		(
+			Version,
+			BatchNo,
+			GameId,
+			GameServerId,
+			RegisterChannelId,
+			DeviceId,
+			IMEI,
+			UserId,
+			UserName,
+			AccountId,
+			AccountName,
+			UserLevel,
+			MoneyType,
+			ActionType,
+			ReasonType,
+			SubReasonType,
+			Charge,
+			Donate,
+			Bind,
+			AfterCharge,
+			AfterDonate,
+			AfterBind,
+			OpTime,
+			LogTime
+		)values(
+			#Version#,
+			#BatchNo#,
+			#GameId#,
+			#GameServerId#,
+			#RegisterChannelId#,
+			#DeviceId#,
+			#IMEI#,
+			#UserId#,
+			#UserName#,
+			#AccountId#,
+			#AccountName#,
+			#UserLevel#,
+			#MoneyType#,
+			#ActionType#,
+			#ReasonType#,
+			#SubReasonType#,
+			#Charge#,
+			#Donate#,
+			#Bind#,
+			#AfterCharge#,
+			#AfterDonate,
+			#AfterBind#,
+			#OpTime#,
+			#LogTime#
+		)
+		
+    ]]>
+    </sql>
+  </command>
+
+  
+  </commands>

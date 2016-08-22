@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<commands>
+
+  <command >
+    <desription>
+      SQL文的用途的描述
+    </desription>
+    <sqlname>findSysPayconfigfilter</sqlname>
+    <sql><![CDATA[
+		select * from sys_pay_config_filter
+    ]]>
+    </sql>
+  </command>
+
+  
+  
+  <command >
+    <desription>
+      SQL文的用途的描述
+    </desription>
+    <sqlname>findSysPayconfigfilterId</sqlname>
+    <sql><![CDATA[
+		select * from sys_pay_config_filter where fid=#fid#
+    ]]>
+    </sql>
+  </command>
+  
+  
+  
+  
+</commands>

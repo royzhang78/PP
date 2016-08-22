@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<commands>
+
+  <command >
+    <desription>
+      SQL文的用途的描述
+    </desription>
+    <sqlname>insertTUserFacebook</sqlname>
+    <sql><![CDATA[
+		insert into t_user_facebook
+		(
+			 
+			u_deviceid,
+			login_name,
+			serverName,
+			u_ppid,
+			facebookid,
+			first_name,
+			gender,
+			last_name,
+			link,
+			locale,
+			name,
+			timezone,
+			updated_time,
+			verified,
+			metadata
+
+		)values(
+			#u_deviceid#,
+			#login_name#,
+			#serverName#,
+			#u_ppid#,
+			#facebookid#,
+			#first_name#,
+			#gender#,
+			#last_name#,
+			#link#,
+			#locale#,
+			#name#,
+			#timezone#,
+			#updated_time#,
+			#verified#,
+			#metadata#
+		)
+		
+    ]]>
+    </sql>
+  </command>
+  
+  
+  
+    <command >
+    <desription>
+      SQL文的用途的描述
+    </desription>
+    <sqlname>updateTUserFacebook</sqlname>
+    <sql><![CDATA[
+		update t_user_facebook set 
+			u_deviceid=#u_deviceid#,
+			login_name=#login_name#,
+			serverName=#serverName#,			
+			facebookid=#facebookid#,
+			first_name=#first_name#,
+			gender=#gender#,
+			last_name=#last_name#,
+			link=#link#,
+			locale=#locale#,
+			name=#name#,
+			timezone=#timezone#,
+			updated_time=#updated_time#,
+			verified=#verified#,
+			metadata=#metadata#
+
+			where u_ppid=#u_ppid#
+		
+		
+    ]]>
+    </sql>
+  </command>
+  
+  
+  
+   <command >
+    <desription>
+      SQL文的用途的描述
+    </desription>
+    <sqlname>inserttuserfacebookdata</sqlname>
+    <sql><![CDATA[
+		insert into t_user_facebook_data(accesstoken,userid,u_ppid)values(#accessToken#,#userId#,#u_ppid#)		
+    ]]>
+    </sql>
+  </command>
+  
+  
+  <command >
+    <desription>
+      SQL文的用途的描述
+    </desription>
+    <sqlname>findtuserfacebookdata</sqlname>
+    <sql><![CDATA[
+		select * from t_user_facebook_data limit 100
+    ]]>
+    </sql>
+  </command>
+  
+  
+  <command >
+    <desription>
+      SQL文的用途的描述
+    </desription>
+    <sqlname>deltuserfacebookdata</sqlname>
+    <sql><![CDATA[
+		delete from  t_user_facebook_data where id=#id#
+    ]]>
+    </sql>
+  </command>
+ 
+ 
+</commands>

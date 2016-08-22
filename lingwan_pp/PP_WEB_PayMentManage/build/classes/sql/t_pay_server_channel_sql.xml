@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<commands>
+
+  <command >
+    <desription>
+      查询所有设定的支付渠道
+    </desription>
+    <sqlname>findPayServerChannel</sqlname>
+    <sql><![CDATA[
+		select * from t_pay_server_channel
+    ]]>
+    </sql>
+  </command>
+
+  
+  
+   <command >
+    <desription>
+      查询所有设定的支付渠道
+    </desription>
+    <sqlname>findPayServerChannelBySid</sqlname>
+    <sql><![CDATA[
+		select a.*,cast(a.`range` as char(8)) as `rg` from t_pay_server_channel a where a.s_id=#s_id#
+    ]]>
+    </sql>
+  </command>
+  
+  
+  
+   <command >
+    <desription>
+      	删除设定的支付渠道
+    </desription>
+    <sqlname>delPayServerChannelBySid</sqlname>
+    <sql><![CDATA[
+		delete from t_pay_server_channel where s_id=#s_id#
+    ]]>
+    </sql>
+  </command>
+  
+  
+  
+   <command >
+    <desription>
+      查询所有设定的支付渠道
+    </desription>
+    <sqlname>insertPayServerChannel</sqlname>
+    <sql><![CDATA[
+		insert into t_pay_server_channel (
+			c_id,
+			s_id,
+			status,
+			create_time,
+			`key`,
+			`range`
+		) values (
+			#c_id#,
+			#s_id#,
+			#status#,
+			now(),
+			#key#,
+			#range#
+		)
+    ]]>
+    </sql>
+  </command>
+ 
+</commands>

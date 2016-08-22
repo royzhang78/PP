@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<commands>
+
+  <command >
+    <desription>
+      指定游戏使用短信支付渠道（可用于测试）
+    </desription>
+    <sqlname>findServerPayChannel</sqlname>
+    <sql><![CDATA[
+    select * from t_server_pay_channel where s_name=#s_name#
+    ]]>
+    </sql>
+  </command>
+
+  
+   
+ 
+</commands>

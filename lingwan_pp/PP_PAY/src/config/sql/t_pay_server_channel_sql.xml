@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<commands>
+
+  <command >
+    <desription>
+      查询支付渠道是否可用 
+    </desription>
+    <sqlname>fingServerChannel</sqlname>
+    <sql><![CDATA[
+		select * from t_pay_server_channel where c_id=#c_id# and s_id=#s_id# and status=2
+    ]]>
+    </sql>
+  </command>
+  
+  
+  
+  <command >
+    <desription>
+      查询随机可用的支付渠道
+    </desription>
+    <sqlname>fingServerChannelByTypeServerId</sqlname>
+    <sql><![CDATA[
+  select a.* from t_pay_server_channel a ,t_pay_channel b where a.c_id=b.channel_id 
+  and a.`status`=2  and `range`>0 and a.s_id=#sid# and b.type=#type#
+ ]]>
+    </sql>
+  </command>
+  
+  
+  
+  
+  
+</commands>

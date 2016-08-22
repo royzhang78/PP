@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<commands>
+
+  <command >
+    <desription>
+      SQL文的用途的描述
+    </desription>
+    <sqlname>findAllPayServer</sqlname>
+    <sql><![CDATA[
+		select * from t_pay_server
+    ]]>
+    </sql>
+  </command>
+
+
+ <command >
+    <desription>
+      SQL文的用途的描述
+    </desription>
+    <sqlname>findPayServerByName</sqlname>
+    <sql><![CDATA[
+		select * from t_pay_server where s_name=#s_name#
+    ]]>
+    </sql>
+  </command>
+  
+   <command >
+    <desription>
+      SQL文的用途的描述
+    </desription>
+    <sqlname>findPayServerById</sqlname>
+    <sql><![CDATA[
+		select * from t_pay_server where s_id=#s_id#
+    ]]>
+    </sql>
+  </command>
+  
+   
+   
+    <command >
+    <desription>
+      SQL文的用途的描述。例： 搜索用户时的动态条件SQL文。  $!{id.asString()} 将html转义
+    </desription>
+    <sqlname>findServerByPage</sqlname>
+    <sql><![CDATA[
+		select * from t_pay_server where
+		
+		#if (s_name != null)  
+				 `s_name`  = #s_name# and
+		#end
+		1=1 order by s_id desc,isSandbox desc  LIMIT #start#,#limit#
+		
+    ]]>
+    </sql>
+  </command>
+  
+   <command >
+    <desription>
+      SQL文的用途的描述。例： 搜索用户时的动态条件SQL文。  $!{id.asString()} 将html转义
+    </desription>
+    <sqlname>findServerByPageCount</sqlname>
+    <sql><![CDATA[
+		select count(*) from t_pay_server where
+		
+		#if (s_name != null)  
+				 `s_name` =#s_name# and
+		#end
+		1=1 
+    ]]>
+    </sql>
+  </command>
+  
+  
+  
+  
+   <command >
+    <desription>
+      SQL文的用途的描述。例： 搜索用户时的动态条件SQL文。  $!{id.asString()} 将html转义
+    </desription>
+    <sqlname>insertServer</sqlname>
+    <sql><![CDATA[
+		insert into t_pay_server(
+				
+				s_name,
+				s_ip,
+				s_port,
+				s_call_payment_url,
+				s_call_payment_type,
+				s_status,
+				s_create_date,
+				s_key,
+				isSandbox
+		) values(
+			
+			#s_name#,
+			#s_ip#,
+			#s_port#,
+			#s_call_payment_url#,
+			#s_call_payment_type#,
+			#s_status#,
+			now(),
+			#s_key#,
+			#isSandbox#
+		)
+    ]]>
+    </sql>
+  </command>
+  
+  
+  
+  <command >
+    <desription>
+      SQL文的用途的描述。例： 搜索用户时的动态条件SQL文。  $!{id.asString()} 将html转义
+    </desription>
+    <sqlname>updateServer</sqlname>
+    <sql><![CDATA[
+		update t_pay_server set 
+			
+			s_ip=#s_ip#,
+			s_port=#s_port#,
+			s_call_payment_url=#s_call_payment_url#,
+			s_call_payment_type=#s_call_payment_type#,
+			s_status=#s_status#,
+			s_key=#s_key#,
+			isSandbox=#isSandbox#
+			
+			where s_id=#s_id#
+		 
+    ]]>
+    </sql>
+  </command>
+ 
+</commands>

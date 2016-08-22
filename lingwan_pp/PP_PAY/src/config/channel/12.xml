@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<commands>
+
+ <command >
+    <desription><![CDATA[
+      	用于记录充值。无回调
+     ]]>
+     </desription>
+    <channel><![CDATA[
+    {
+    "channen_id":12,
+    "channel_name":"ios_pay_log",
+    "channel_type":12,
+    "request_type":"http",
+    "mo":{
+    		
+    	},
+    "notif":{
+    		
+    	}
+    }
+    ]]>
+    </channel>
+     <MOresponseStatus><![CDATA[
+		$!{responseStatus.asString()}
+    ]]>
+    </MOresponseStatus>
+    <MOresponse><![CDATA[
+		$!{responseCode.asString()}
+    ]]>
+    </MOresponse>
+    
+    <NotifStatus><![CDATA[
+		$!{responseStatus.asString()}
+    ]]>
+    </NotifStatus>
+    
+    <NotifResponse><![CDATA[
+		$!{responseCode.asString()}
+    ]]>
+    </NotifResponse>
+  </command>
+  
+</commands>

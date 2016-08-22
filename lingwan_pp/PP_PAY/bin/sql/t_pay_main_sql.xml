@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<commands>
+
+  <command >
+    <desription>
+      SQL文的用途的描述。例： 搜索用户时的动态条件SQL文。  $!{id.asString()} 将html转义
+      demo 
+      insert into `testtable2` (a) values(#a#)
+		#if (id == null)  
+			AND id=#id#   
+		#else 
+			AND id2=#id#  
+		#end
+    </desription>
+    <sqlname>insertPayMain</sqlname>
+    <sql><![CDATA[
+		insert into t_pay_main (
+		pay_id,token,pay_channel_type,pay_status,unique_key,pay_money,currency,create_pay_date,fail_code,
+		succcess_pay_date,other_parmeters,s_id,source,server_order_info,uid,product_id,product_num,
+		call_server_count,step1,step2,step3,step4,error_desc,pay_type,productType,cparam,isSandbox,serverCode,adType
+		)values(
+		#pay_id#,#token#,#pay_channel_type#,#pay_status#,#unique_key#,#pay_money#,#currency#,
+		#create_pay_date#,#fail_code#,#succcess_pay_date#,#other_parmeters#,#s_id#,#source#,
+		#server_order_info#,#uid#,#product_id#,#product_num#,#call_server_count#,
+		#step1#,#step2#,#step3#,#step4#,#error_desc#,#pay_type#,#productType#,#cparam#,#isSandbox#,#serverCode#,#adType#
+		)
+    ]]>
+    </sql>
+  </command>
+
+ <command >
+    <desription>
+      SQL文的用途的描述。
+    </desription>
+    <sqlname>selectPayMainById</sqlname>
+    <sql><![CDATA[
+		select * from  t_pay_main where pay_id=#pay_id#
+    ]]>
+    </sql>
+  </command>
+  
+  
+   <command >
+    <desription>
+      SQL文的用途的描述。
+    </desription>
+    <sqlname>selectPayMainByunique_keyAndType</sqlname>
+    <sql><![CDATA[
+		select * from  t_pay_main where unique_key=#unique_key# and pay_channel_type=#pay_channel_type#
+    ]]>
+    </sql>
+  </command>
+  
+  
+   <command >
+    <desription>
+      SQL文的用途的描述。
+    </desription>
+    <sqlname>selectPayMainByADColonyOrder</sqlname>
+    <sql><![CDATA[
+		select * from  t_pay_main where pay_channel_type=11 and pay_status=0  and source=#source# ORDER BY  create_pay_date desc  LIMIT 1
+    ]]>
+    </sql>
+  </command>
+  
+  
+  
+    <command >
+    <desription>
+      SQL文的用途的描述。
+     
+    </desription>
+    <sqlname>updatePayMain</sqlname>
+    <sql><![CDATA[
+		update  t_pay_main 
+		set 
+		#if (token != null)  
+			token=#token#,
+		#end
+		#if (pay_channel_type != null)  
+			pay_channel_type=#pay_channel_type#,
+		#end
+		#if (pay_status != null)  
+			pay_status=#pay_status#,
+		#end
+		#if (unique_key != null)  
+			unique_key=#unique_key#,
+		#end
+		#if (pay_money != null)  
+			pay_money=#pay_money#,
+		#end
+		#if (currency != null)  
+			currency=#currency#,
+		#end
+		#if (create_pay_date != null)  
+			create_pay_date=#create_pay_date#,
+		#end
+		#if (fail_code != null)  
+			fail_code=#fail_code#,
+		#end
+		#if (succcess_pay_date != null)  
+			succcess_pay_date=#succcess_pay_date#,
+		#end
+		#if (other_parmeters != null)  
+			other_parmeters=#other_parmeters#,
+		#end
+		#if (s_id != null)  
+			s_id=#s_id#,
+		#end
+		#if (source != null)  
+			source=#source#,
+		#end
+		#if (server_order_info != null)  
+			server_order_info=#server_order_info#,
+		#end
+		#if (uid != null)  
+			uid=#uid#,
+		#end
+		#if (product_id != null)  
+			product_id=#product_id#,
+		#end
+		#if (product_num != null)  
+			product_num=#product_num#,
+		#end
+		#if (call_server_count != null)  
+			call_server_count=#call_server_count#,
+		#end
+		#if (step1 != null)  
+			step1=#step1#,
+		#end
+		#if (step2 != null)  
+			step2=#step2#,
+		#end
+		#if (step3 != null)  
+			step3=#step3#,
+		#end
+		#if (step4 != null)  
+			step4=#step4#,
+		#end
+		#if (error_desc != null)  
+			error_desc=#error_desc#,
+		#end
+		#if (pay_type != null)  
+			pay_type=#pay_type#,
+		#end
+		#if (productType != null)  	
+			productType=#productType#,
+		#end
+		#if (cparam != null)  
+			cparam=#cparam#,
+		#end
+		#if (operator != null)  
+			operator=#operator#,
+		#end
+		
+		pay_id=#pay_id#
+		where pay_id=#pay_id#
+		
+    ]]>
+    </sql>
+  </command>
+ 
+</commands>

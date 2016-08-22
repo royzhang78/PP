@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop" xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="
+        http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd
+        http://www.springframework.org/schema/tx
+       	http://www.springframework.org/schema/tx/spring-tx.xsd
+        http://www.springframework.org/schema/aop
+        http://www.springframework.org/schema/aop/spring-aop.xsd">
+        
+        
+  <bean id="propertyConfigurer"  
+        class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">  
+        <property name="locations">  
+            <list>  
+                 <value>classpath*:/propConfig/*.properties</value>   
+                <!-- <value>E:\\workspace\\TemplateServer\\WebContent\\WEB-INF\\config\\propConfig\\dbconfig.properties</value>  -->
+            </list>  
+        </property>  
+    </bean> 
+    
+     
+   
+	
+	
+	<!-- 配置SQL语句的XML文件，该实例用来解析XML文件获取SQL语句 -->
+	<bean id="sqlxmlManagement" class="com.rodcell.comm.util.SqlXmlParser">
+		<property name="mappingDirectoryLocations">
+			<list>
+				<value>classpath*:/sql/*sql*.xml</value>
+			</list>
+		</property>
+	</bean>
+	
+	
+	<bean id="queryDataSource" class="com.alibaba.druid.pool.DruidDataSource"  
+        destroy-method="close">  
+        <property name="url" value="${url}" />  
+        <property name="username" value="${username}" />  
+        <property name="password" value="${password}" />  
+        <property name="driverClassName" value="${driverClassName}" />  
+        <property name="filters" value="${filters}" />  
+  
+        <property name="maxActive" value="${querymaxActive}" />  
+        <property name="initialSize" value="${queryinitialSize}" />  
+        <property name="maxWait" value="${querymaxWait}" />  
+        <property name="minIdle" value="${queryminIdle}" />  
+  
+        <property name="timeBetweenEvictionRunsMillis" value="${timeBetweenEvictionRunsMillis}" />  
+        <property name="minEvictableIdleTimeMillis" value="${minEvictableIdleTimeMillis}" />  
+  
+        <property name="validationQuery" value="${validationQuery}" />  
+        <property name="testWhileIdle" value="${testWhileIdle}" />  
+        <property name="testOnBorrow" value="${testOnBorrow}" />  
+        <property name="testOnReturn" value="${testOnReturn}" />  
+        <property name="maxOpenPreparedStatements"  
+            value="${maxOpenPreparedStatements}" />  
+        <property name="removeAbandoned" value="${removeAbandoned}" /> <!-- 打开removeAbandoned功能 -->  
+        <property name="removeAbandonedTimeout" value="${removeAbandonedTimeout}" /> <!-- 1800秒，也就是30分钟 -->  
+        <property name="logAbandoned" value="${logAbandoned}" /> <!-- 关闭abanded连接时输出错误日志 -->  
+    </bean>  
+    
+    
+    	<!-- Transaction manager for a single Hibernate SessionFactory (alternative to JTA) -->
+	<!-- Transaction manager for a single Hibernate SessionFactory (alternative 
+		to JTA) -->
+	<!-- 声明事务 -->
+	<bean id="myTransactionManagerQuery"
+		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="queryDataSource">
+		</property>
+	</bean>
+	
+	 
+	
+	
+	
+	
+	
+	<bean id="updateDataSource" class="com.alibaba.druid.pool.DruidDataSource"  
+        destroy-method="close">  
+        <property name="url" value="${url}" />  
+        <property name="username" value="${username}" />  
+        <property name="password" value="${password}" />  
+        <property name="driverClassName" value="${driverClassName}" />  
+        <property name="filters" value="${filters}" />  
+  
+        <property name="maxActive" value="${updatemaxActive}" />  
+        <property name="initialSize" value="${updateinitialSize}" />  
+        <property name="maxWait" value="${updatemaxWait}" />  
+        <property name="minIdle" value="${updateminIdle}" />  
+  
+        <property name="timeBetweenEvictionRunsMillis" value="${timeBetweenEvictionRunsMillis}" />  
+        <property name="minEvictableIdleTimeMillis" value="${minEvictableIdleTimeMillis}" />  
+  
+        <property name="validationQuery" value="${validationQuery}" />  
+        <property name="testWhileIdle" value="${testWhileIdle}" />  
+        <property name="testOnBorrow" value="${testOnBorrow}" />  
+        <property name="testOnReturn" value="${testOnReturn}" />  
+        <property name="maxOpenPreparedStatements"  
+            value="${maxOpenPreparedStatements}" />  
+        <property name="removeAbandoned" value="${removeAbandoned}" /> <!-- 打开removeAbandoned功能 -->  
+        <property name="removeAbandonedTimeout" value="${removeAbandonedTimeout}" /> <!-- 1800秒，也就是30分钟 -->  
+        <property name="logAbandoned" value="${logAbandoned}" /> <!-- 关闭abanded连接时输出错误日志 -->  
+    </bean>  
+    
+    
+    	<!-- Transaction manager for a single Hibernate SessionFactory (alternative to JTA) -->
+	<!-- Transaction manager for a single Hibernate SessionFactory (alternative 
+		to JTA) -->
+	<!-- 声明事务 -->
+	<bean id="myTransactionManagerUpdate"
+		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="updateDataSource">
+		</property>
+	</bean>
+	
+	<!-- SERVICE -->
+	<bean id="dbManagement" class="com.rodcell.db.impl.DBManagementImpl"> 
+		<property name="queryDataSource" ref="queryDataSource">
+		</property>
+		<property name="updateDataSource" ref="updateDataSource">
+		</property>
+		
+	</bean>
+		<!-- 事务配置，采用annotation方式配置，在需要执行事务的方法上使用@Transaction配置 -->
+	<tx:annotation-driven transaction-manager="myTransactionManagerUpdate" />
+	
+		<!-- 事务配置，采用annotation方式配置，在需要执行事务的方法上使用@Transaction配置 -->
+	<tx:annotation-driven transaction-manager="myTransactionManagerQuery" />
+	
+	
+ 
+	<context:component-scan base-package="com.rodcell.db.impl" />
+	<context:component-scan base-package="com.rodcell.dao" />
+	<context:component-scan base-package="com.rodcell.service.impl" />	
+	<context:component-scan base-package="com.rodcell.service" />	
+	<context:component-scan base-package="com.rodcell.servlet" />
+	
+	
+	
+	<bean id="idGenerate" class="com.rodcell.comm.util.IDGenerate"> 
+	</bean>
+	
+	<import resource="memcached.xml" />
+	 <!-- 
+	<import resource="redis.xml" />
+	
+	 <import resource="mq.xml" />
+	 -->
+</beans>
